@@ -47,16 +47,70 @@ class MyArray {
   }
 
   //Push method----------
-  push(item){
+  push(item) {
     this.data[this.length] = item;
     // console.log('--------', this.data);
     this.length++;
     return this.length;
   }
+
+  ///Get method----------
+
+  get(index) {
+    return this.data[index];
+  }
+
+  //Pop method----------
+  pop() {
+    const lastItem = this.data[this.length - 1];
+    // console.log("-------",lastItem);
+    delete this.data[this.length - 1];
+    this.length--;
+    return lastItem;
+  }
+
+  //Shift method----------
+  shift() {
+    const firstItem = this.data[0];
+
+    //re-indexing
+    for (let i = 0; i < this.length; i++) {
+      this.data[i] = this.data[i+1]
+    }
+
+    //
+    delete this.data[this.length - 1];
+    this.length--;
+    return firstItem;
+
+  }
+
+  //delet by index
+  deleteByIndex(index){
+    const item = this.data[index]
+
+    for(let i = 0; i<this.length - 1; i++){
+      this.data[i] = this.data[i+1];
+    }
+    delete this.data[this.length - 1];
+    this.length--;
+    return item;
+
+  }
+
 }
 
-const myNewArray = new MyArray()
+const myNewArray = new MyArray();
 myNewArray.push("apple");
 myNewArray.push("orange");
 myNewArray.push("mango");
+
+// console.log(myNewArray.get(0)) //Get method----------
+// myNewArray.pop(); //Pop method----------
+
+console.log(myNewArray.data);
+myNewArray.shift(); //Shift method----------
+console.log(myNewArray.data);
+
+myNewArray.deleteByIndex(0)//delete item by index
 console.log(myNewArray.data);
